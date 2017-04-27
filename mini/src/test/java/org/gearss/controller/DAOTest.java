@@ -32,7 +32,7 @@ public class DAOTest {
 	
 	@Test
 	public void listTest(){
-		dao.list();
+		dao.list(null);
 		
 	}
 	

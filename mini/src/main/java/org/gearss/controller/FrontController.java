@@ -1,14 +1,19 @@
 package org.gearss.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.log4j.Logger;
+import org.gearss.domain.Criteria;
 import org.gearss.domain.ImgVO;
+import org.gearss.domain.PageMaker;
 import org.gearss.service.ImgService;
 import org.gearss.service.ReplyService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -25,8 +30,15 @@ public class FrontController {
 	ReplyService rService;
 	
 	@GetMapping("/main")
-	public void main(){
+	public void main(@ModelAttribute("cri") Criteria cri, Model model)throws Exception{
+		
 		logger.info("main..");
+		
+		List<ImgVO> list = service.listAll(cri);
+		model.addAttribute("list",list);
+		model.addAttribute("pageMaker",new PageMaker(cri, service.getCount(cri)));
+	
+		
 	}
 	
 	@GetMapping("/write")

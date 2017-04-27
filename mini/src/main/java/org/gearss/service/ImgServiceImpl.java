@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.gearss.domain.Criteria;
 import org.gearss.domain.ImgVO;
 import org.gearss.persistence.ImgDAO;
 import org.springframework.stereotype.Service;
@@ -35,8 +36,16 @@ public class ImgServiceImpl implements ImgService {
 	}
 
 	@Override
-	public List<ImgVO> listAll() {
-		return dao.list();
+	public List<ImgVO> listAll(Criteria cri) {
+		
+		return dao.list(cri);
 	}
 
+	@Override
+	public int getCount(Criteria cri) {
+		// TODO Auto-generated method stub
+		return dao.totalCount(cri);
+	}
+
+	
 }

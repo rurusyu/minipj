@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-
+import org.gearss.domain.Criteria;
 import org.gearss.domain.ImgVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -40,10 +40,17 @@ public class ImgDAOImpl implements ImgDAO {
 		
 	}
 
+
 	@Override
-	public List<ImgVO> list() {
-		
-		return session.selectList(namespace + ".getList");
+	public List<ImgVO> list(Criteria cri) {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace + ".getList",cri);
+	}
+
+	@Override
+	public int totalCount(Criteria cri) {
+		// TODO Auto-generated method stub
+		return session.selectOne(namespace + ".totalCount", cri);
 	}
 	
 	

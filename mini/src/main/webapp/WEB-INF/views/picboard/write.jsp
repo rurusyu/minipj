@@ -27,21 +27,21 @@
 								placeholder="Enter ..."></textarea>
 						</div>
 						<div class="form-group">
-							<label for="exampleInputEmail1">Filename</label> <input type="text"
+							<label for="exampleInputEmail1">Filename</label> <input type="file"
 								name="filename" class="form-control" placeholder="Enter Writer">
 						</div>
 					</div>
 					<!-- /.box-body -->
 
-					<div class="box-footer">
+					<div class="box-footer" style="float: right">
 						<button type="submit" class="btn btn-primary">Submit</button>
-					
+						
 					</div>
 					
 				</form>
 				
 				<form action="/picboard/main">
-				<div class="box-footer">
+				<div class="box-footer"style="float: right">
 				<button type="submit" class="btn btn-primary">Cancel</button>
 				</div>
 				</form>
