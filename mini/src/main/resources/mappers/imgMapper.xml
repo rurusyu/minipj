@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.gearss.persistence.ImgDAO">
+
+	<sql id="search">
+		<if test="keyword !=null">
+		 <choose>
+    	<when test='type == "n"'>
+     	 AND titleName like concat('%',#{keyword},'%')
+    	</when>
+    	<when test='type == "c"'>
+     	 AND regdate like concat('%',#{keyword},'%')
+    	</when>
+    	
+  		</choose>
+		</if>
+	</sql>
+
+
+
+	<insert id="insert" parameterType="ImgVO">
+		insert into tbl_imgboard(titleName,content,filename) values (#{titleName},#{content},#{filename})
+	</insert>
+
+	<select id="read" parameterType="ImgVO" resultType="ImgVO">
+	select * from tbl_imgboard where ino = #{ino}
+	</select>
+	
+	<update id="update" parameterType="ImgVO">
+	update tbl_imgboard set titleName = #{titleName}, content = #{content}, filename = #{filename} where ino = #{ino}
+	
+	</update>
+	
+	<delete id="delete" parameterType="ImgVO">
+	
+	delete from tbl_imgboard where ino =#{ino}
+	</delete>
+	
+	<select id="getList" resultType="ImgVO" parameterType="Criteria">
+	
+	select * from tbl_imgboard where ino >0 
+
+	<include refid="search"></include>
+	
+	order by ino desc limit #{skip},#{amount}
+	
+	</select>
+	
+	<select id="totalCount" resultType="int">
+	select count(ino) from tbl_imgboard where ino >0
+	<include refid="search"></include>
+	</select>
+	
+</mapper>
