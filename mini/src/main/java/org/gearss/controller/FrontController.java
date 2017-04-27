@@ -36,7 +36,7 @@ public class FrontController {
 	
 	@PostMapping("/write")
 	public String writePOST(ImgVO vo, Model model) throws Exception{
-		
+		logger.info("222222222222222222");
 		service.regist(vo);
 		model.addAttribute("result", "성공적으로 등록되었습니다.");
 		
