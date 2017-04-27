@@ -35,7 +35,15 @@
 
 					<div class="box-footer">
 						<button type="submit" class="btn btn-primary">Submit</button>
+					
 					</div>
+					
+				</form>
+				
+				<form action="/picboard/main">
+				<div class="box-footer">
+				<button type="submit" class="btn btn-primary">Cancel</button>
+				</div>
 				</form>
 
 

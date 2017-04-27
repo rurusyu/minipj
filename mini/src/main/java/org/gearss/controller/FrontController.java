@@ -55,5 +55,12 @@ public class FrontController {
 		logger.info("reply..");
 	}
 	
+	@PostMapping("/del")
+	public void delete(ImgVO vo, Model model){
+		
+		service.remove(vo.getIno());
+		
+	}
+	
 	
 }
