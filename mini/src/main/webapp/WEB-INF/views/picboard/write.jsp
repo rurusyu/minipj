@@ -1,62 +1,99 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="../include/header.jsp"%>
+   
+<style>
 
-<!-- Main content -->
-<section class="content">
-	<div class="row">
-		<!-- left column -->
-		<div class="col-md-12">
-			<!-- general form elements -->
-			<div class="box box-primary">
-				<div class="box-header">
-					<h3 class="box-title">REGISTER BOARD</h3>
-				</div>
-				<!-- /.box-header -->
+.file{
+background-color: aqua;
+width: 100px;
+height: 100px;
+}
 
-				<form role="form" method="post">
-					<div class="box-body">
-						<div class="form-group">
-							<label for="exampleInputEmail1">Title</label> <input type="text"
-								name='titleName' class="form-control" placeholder="Enter Title">
-						</div>
-						<div class="form-group">
-							<label for="exampleInputPassword1">Content</label>
-							<textarea class="form-control" name="content" rows="3"
-								placeholder="Enter ..."></textarea>
-						</div>
-						<div class="form-group">
-							<label for="exampleInputEmail1">Filename</label> <input type="file"
-								name="filename" class="form-control" placeholder="Enter Writer">
-						</div>
-					</div>
-					<!-- /.box-body -->
+.f1{
+background-color: gray;
+width: 100px;
+height: 100px;
+}
 
-					<div class="box-footer" style="float: right">
-						<button type="submit" class="btn btn-primary">Submit</button>
-						
-					</div>
-					
-				</form>
-				
-				<form action="/picboard/main">
-				<div class="box-footer"style="float: right">
-				<button type="submit" class="btn btn-primary">Cancel</button>
-				</div>
-				</form>
+</style>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            REGISTER --------
+            <form method="post">
+                <div class="form-group1">
+                    <label for="exampleInputEmail1">title</label> <input type="text"
+                        class="form-control" name="title" value="title">
+                </div>
+                <div class="form-group2">
+                    <label for="exampleInputPassword1">content</label> <input
+                        type="text" class="form-control" name="content" value="content">
+                </div>
+                <div class="form-group3">
+                    <label for="exampleInputPassword1">writer</label> <input
+                        type="text" class="form-control" name="writer" value="writer">
+                </div>
+                <div  >
+                    <input class="f1" type="hidden" class="form-control" name="pname" value="pname">
+                
+                </div>
+                
+                <button class="btn">제출</button>
+            </form>
+                 <div class="file">
+                    
+                </div>
+
+            <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+                integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+                crossorigin="anonymous"></script>
 
 
-			</div>
-			<!-- /.box -->
-		</div>
-		<!--/.col (left) -->
+            <script>
+                $(document).ready(function(e) {
+            
+                    
+                 $(".file").on("dragenter dragover", function(e) {
+                    e.preventDefault();
+                })
+                    
+                $(".file").on("drop", function(e) {
+                    e.preventDefault();
+                    
+                    var files = e.originalEvent.dataTransfer.files;
+                    
+                    console.log(files);
+                    
+                    var file = files[0];
+                    
+                    var formData = new FormData();
 
-	</div>
-	<!-- /.row -->
-</section>
-<!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
+                    formData.append("file",file);
+                    
+                    $(".f1").text(files[0].name);
+                    $(".f1").val(files[0].name);
+                    
+                    $.ajax({
+                        url:"/picboard/upload",
+                        data: formData,
+                        processData:false,
+                        contentType:false,
+                        type:'post',
+                        success:function(result){
+                        console.log(result)
+                        }
 
-<%@include file="../include/footer.jsp"%>
+                });
+                });
+                    
+
+                });
+            </script>
+
+
+
+        </div>
+    </div>
+    
+    <%@include file="../include/footer.jsp"%>
+

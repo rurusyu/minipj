@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class ImgVO {
 	
 	private int ino;
-	private String titleName,content,filename;
+	private String titleName,content,fileName;
 	private Timestamp regdate;
 	
 	
@@ -29,10 +29,10 @@ public class ImgVO {
 		this.content = content;
 	}
 	public String getFilename() {
-		return filename;
+		return fileName;
 	}
 	public void setFilename(String filename) {
-		this.filename = filename;
+		this.fileName = filename;
 	}
 	public Timestamp getRegdate() {
 		return regdate;
@@ -42,7 +42,7 @@ public class ImgVO {
 	}
 	@Override
 	public String toString() {
-		return "ImgVO [ino=" + ino + ", titleName=" + titleName + ", content=" + content + ", filename=" + filename
+		return "ImgVO [ino=" + ino + ", titleName=" + titleName + ", content=" + content + ", filename=" + fileName
 				+ ", regdate=" + regdate + "]";
 	}
 	
